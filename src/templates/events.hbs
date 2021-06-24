@@ -15,12 +15,9 @@
          </p>
 
          <ul class="tag-list">
-            {{!-- <li class="tag-list__item">{{ingredients}}</li> --}}
-            {{!-- <li class="tag-list__item">{{ingredients}}</li>
-            <li class="tag-list__item">{{ingredients}}</li>
-            <li class="tag-list__item">{{ingredients}}</li>
-            <li class="tag-list__item">{{ingredients}}</li>
-            <li class="tag-list__item">{{ingredients}}</li> --}}
+            {{#each ingredients}}
+            <li class="tag-list__item">{{this}}</li>
+            {{/each}}
          </ul>
       </div>
 
@@ -31,6 +28,3 @@
    </article>
 </li>
 {{/each}}
-{{!-- <i class="fas fa-shopping-cart"></i> --}}
-{{!-- <i class="fas fa-money-check-alt"></i> --}}
-{{!-- <i class="fas fa-money-check"></i> --}}
