@@ -1,22 +1,67 @@
+// ВЫЗОВ ФУНКЦИЙ
+outputTheme();
+
+// КОНСТАНТЫ переменные
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
+//ПЕРЕМЕННЫЕ, ССЫЛКИ
 const refs = {
    bodyRef: document.querySelector('body'),
    inputTheme: document.querySelector('#theme-switch-toggle'),
 };
-// console.log(refs.bodyRef);
-// console.log(refs.inputTheme);
 
-refs.bodyRef.classList.add('light-theme')
+const bodyClass = refs.bodyRef.classList;
 
-// inputTheme.addEventListener('change', changesTheSubject);
+// Body ПО УМОЛЧАНИЮ
+refs.bodyRef.classList.add(Theme.LIGHT)
 
-// function changesTheSubject(event) {
-//    refs.bodyRef.classList.add('dark-theme');
-//    refs.bodyRef.classList.remove('light-theme');
+// СЛУШАТЕЛЬ ЧЕКБОКСА
+refs.inputTheme.addEventListener('change', changesTheSubject);
 
-//    console.log(event);
-// }
+
+// ИЗМЕНЕНИЕ ТЕМЫ ПО ЧЕКБОКСУ
+function changesTheSubject() {
+   if (refs.inputTheme.checked) {
+      bodyClass.add(Theme.DARK);
+      bodyClass.remove(Theme.LIGHT);
+      localStorage.setItem('theme', Theme.DARK)
+      // console.log(refs.inputTheme.checked);
+		}
+   else {
+      bodyClass.add(Theme.LIGHT);
+      bodyClass.remove(Theme.DARK);
+      localStorage.setItem('theme', Theme.LIGHT)
+      // console.log(refs.inputTheme.checked);
+	}
+}
+
+// ВОЗВРАЩАЕТ ЗАЧЕНИЕ localStorage 
+function outputTheme() {
+   const saveTheme = localStorage.getItem('theme');
+      if (saveTheme) {
+         return saveTheme
+      }
+}
+
+// УСТАНАВЛИВАЕТ true НА ЧЕКБОКС
+function checkInpyt() {
+   refs.inputTheme.checked = true;
+}
+
+
+// ПРИМЕНЯЕТ ТЕМУ ПРИ ЗАГРУЗКЕ (ИЗ localStorage )
+appliesTheTheme()
+
+function appliesTheTheme() {
+   if (outputTheme() === Theme.DARK) {
+      checkInpyt()
+      changesTheSubject()
+    }
+}
+
+
+
+
